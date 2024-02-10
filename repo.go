@@ -52,7 +52,7 @@ func interactes(listRepo *list.List) {
 func generateId(listRepo *list.List) int {
 	var id int
 	for {
-		id = rand.Intn(10000) + 1000000000
+		id = rand.Intn(10000) + 100000
 		duplicate := false
 		for e := listRepo.Front(); e != nil; e = e.Next() {
 			repo := e.Value.(Repository)
@@ -98,7 +98,8 @@ func proofCreation(repo Repository) {
 	printMessage("\n      PROOF REPOSITORY CREATION       " +
 		"\n       Id : " + fmt.Sprintf("%d", repo.idRepo) + 
 		"\n       Name : " + fmt.Sprintf("%s", repo.nameRepo) +
-		"\n       Size by Amazon server : " + fmt.Sprintf("%.2f KB", repo.sizeRepo),
+		"\n       Size by Amazon server : " + fmt.Sprintf("%.2f KB", repo.sizeRepo) + 
+		"\n     Amazon Web Services appreciates your interaction.\n",
 		)
 }
 
@@ -113,7 +114,7 @@ func searchRepository(listRepo *list.List, id int) (*Repository, error) {
 }
 
 func queryRepository(listRepo *list.List) {
-	fmt.Println("Enter a repository ID:")
+	fmt.Println("Enter a repository id:")
 	var id int
 	fmt.Scanln(&id)
 
@@ -123,11 +124,11 @@ func queryRepository(listRepo *list.List) {
 		return
 	}
 
-	fmt.Printf("Repository found: ID=%d, Name=%s\n", repo.idRepo, repo.nameRepo)
+	fmt.Printf("Repository %d, %s found.\n", repo.idRepo, repo.nameRepo)
 }
 
 func updateRepository(listRepo *list.List) {
-	fmt.Println("Enter a repository ID to update:")
+	fmt.Println("Enter a repository id to update:")
 	var id int
 	fmt.Scanln(&id)
 
@@ -160,10 +161,20 @@ func updateRepository(listRepo *list.List) {
 		repo.sizeRepo = newSize
 		fmt.Printf("Repository %d updated successfully with %.2f KB.\n", repo.idRepo, repo.sizeRepo)
 	default:
-		fmt.Println("Option nonexistent.\n")
+		fmt.Println("Option no existent.\n")
 	}
 }
 
 func deleteRepository(listRepo *list.List) {
+    fmt.Println("Enter a repository id:")
+    var id int
+    fmt.Scanln(&id)
+    
+    repo, err := searchRepository(listRepo, id)
+    if err != nil {
+        fmt.Println(err)
+        return
+    }
+    
+    fmt.Printf("Repository %d, %s deleted successfully.\n", repo.idRepo, repo.nameRepo)
 }
-
