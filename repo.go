@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"math/rand"
 	"container/list"
 )
 
@@ -57,7 +58,34 @@ func generateId(listRepo *list.List) int {
     return enter
 }
 
+func printMessage(message string) string{
+    fmt.Println("***********************************\n")
+    fmt.Println(message)
+    fmt.Println("***********************************\n")
+    return message
+}
+
 func createRepo(listRepo *list.List){
+    id := generateId(listRepo)
+    
+    fmt.Println("Name of your repository:")
+    var name string
+    fmt.Scanln(&name)
+    
+    size := 20.00
+    
+    repo := Repository {
+        idRepo : id,
+        nameRepo : name,
+        sizeRepo : size,
+    }
+    
+    listRepo.PushBack(repo)
+    
+    proofCreation(listRepo);
+}
+
+func proofCreation(listRepo *list.List){
     
 }
 
@@ -72,4 +100,3 @@ func updateRepository(listRepo *list.List){
 func deleteRepository(listRepo *list.List){
     
 }
-
