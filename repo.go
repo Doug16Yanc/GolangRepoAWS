@@ -30,7 +30,7 @@ func interactes(listRepo *list.List){
     
     switch strings.ToLower(option){
         case "c" :
-            createRepo(listRepo)
+            createRepository(listRepo)
         case "s" :
             searchRepository(listRepo)
         case "u" :
@@ -65,7 +65,7 @@ func printMessage(message string) string{
     return message
 }
 
-func createRepo(listRepo *list.List){
+func createRepository(listRepo *list.List){
     id := generateId(listRepo)
     
     fmt.Println("Name of your repository:")
@@ -82,11 +82,12 @@ func createRepo(listRepo *list.List){
     
     listRepo.PushBack(repo)
     
-    proofCreation(listRepo);
+    proofCreation(repo);
 }
 
-func proofCreation(listRepo *list.List){
-    
+func proofCreation(repo Repository){
+    printMessage("      PROOF REPOSITORY CREATION       " +
+                "       Id : " + fmt.Sprintf("%",repo.idRepo))
 }
 
 func searchRepository(listRepo *list.List){
@@ -100,3 +101,4 @@ func updateRepository(listRepo *list.List){
 func deleteRepository(listRepo *list.List){
     
 }
+
