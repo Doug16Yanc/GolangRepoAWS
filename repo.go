@@ -91,7 +91,22 @@ func proofCreation(repo Repository){
 }
 
 func searchRepository(listRepo *list.List){
+    fmt.Println("Enter a id repository:")
+    var id int
+    fmt.Scanln(&id)
     
+    var repoFound = false
+    
+    for e := listRepo.Front(); e != nil; e = e.Next() {
+        repo := e.Value.(Repository)
+        if repo.idRepo == id {
+            repoFound = true
+            fmt.Println("Repository AWS not found.\n")
+        }
+    }
+    if !repoFound {
+        fmt.Println("Repository AWS not found.\n")
+    }
 }
 
 func updateRepository(listRepo *list.List){
