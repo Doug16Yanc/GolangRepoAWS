@@ -41,6 +41,22 @@ func interactes(listRepo *list.List){
     }
 }
 
+func generateId(listRepo *list.List) int {
+    var enter int
+    var id int
+    for {
+        enter = rand.Intn(10000) + 1000000000
+        for e := listRepo.Front(); e != nil; e = e.Next() {
+    		if e.Value.(int) == id {
+    			return 1
+    			break
+    		}
+        }
+    }
+    listRepo.PushBack(enter)
+    return enter
+}
+
 func createRepo(listRepo *list.List){
     
 }
